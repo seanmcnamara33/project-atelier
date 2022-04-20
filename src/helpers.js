@@ -12,6 +12,7 @@ const options = {
 };
 
 const host = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const reviewsHost = '127.0.0.1:3000'
 
 /*------------------------ PRODUCTS ------------------------ */
 /*------------------------ PRODUCTS ------------------------ */
@@ -61,24 +62,24 @@ const postCart = (sku_id) => {
 /*------------------------ REVIEWS ------------------------ */
 
 const getReviews = (product_id, page = 1, count = 2, sort = "relevant") => {
-  return axios.get(host + `/reviews/?product_id=${product_id}&page=${page}&count=${count}&sort=${sort}`, options)
+  return axios.get(reviewsHost + `/reviews/?product_id=${product_id}&page=${page}&count=${count}&sort=${sort}`, options)
     .then((res) => res.data.results)
     .catch((err) => console.error(err));
 };
 
 const getReviewMetadata = (product_id) => {
-  return axios.get(host + `/reviews/meta/?product_id=${product_id}`, options)
+  return axios.get(reviewsHost + `/reviews/meta/?product_id=${product_id}`, options)
     .then((res) => res.data)
     .catch((err) => console.error(err));
 };
 
 const postReview = (reviewObject) => {
-  return axios.post(host + `/reviews`, reviewObject, options)
+  return axios.post(reviewsHost + `/reviews`, reviewObject, options)
     .catch((err) => console.error(err));
 };
 
 const putReviewHelpful = (review_id) => {
-  return axios.put(host + `/reviews/${review_id}/helpful`, {review_id: review_id}, options)
+  return axios.put(reviewsHost + `/reviews/${review_id}/helpful`, {review_id: review_id}, options)
     .catch((err) => console.error(err));
 };
 
@@ -129,7 +130,7 @@ const putAnswerReport = (answer_id) => {
 };
 
 const putReviewReport = (review_id) => {
-  return axios.put(host + `/reviews/${review_id}/report`, {}, options)
+  return axios.put(reviewsHost + `/reviews/${review_id}/report`, {}, options)
     .then((res) => res)
     .catch((err) => console.error(err));
 };
