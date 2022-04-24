@@ -52,6 +52,7 @@ let Ratings = () => {
         setTotalReviews(r);
         setTotalScore(s);
         setAverageRating((s / r).toFixed(2));
+        setPageNum(pageNum+1)
       }).then(() => {
         setLoading(false);
       }).catch(err => {

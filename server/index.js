@@ -12,36 +12,6 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 
-//works
-app.get('/reviews/meta', (req, res) => {
-  console.log(req.query.product_id)
-  res.send('this is the meta response');
-})
-
-//works
-app.get('/reviews', (req, res) => {
-  console.log(req.query);
-  res.send('this is the reviews response')
-})
-
-//works
-app.post('/reviews', (req, res) => {
-  console.log(req.body);
-  res.send('Hopefully this works');
-})
-
-//unchecked
-app.put('/reviews/:review_id/helpful', (req, res) => {
-  console.log('helpful');
-  res.send('helpful');
-})
-
-//unchecked
-app.put('/reviews/:review_id/report', (req, res) => {
-  console.log('report');
-  res.send('report');
-})
-
 // app.get('*.css', function (req, res, next) {
 //   req.url = req.url + '.gz';
 //   res.set('Content-Encoding', 'gzip');

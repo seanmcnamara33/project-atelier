@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from '/config.js';
+import config from './config.js';
 
 //Import whatever functions you want from this file
 //API get requests return promises that resolve to your data
@@ -12,7 +12,7 @@ const options = {
 };
 
 const host = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
-const reviewsHost = '127.0.0.1:3000'
+const reviewsHost = 'http://localhost:3001'
 
 /*------------------------ PRODUCTS ------------------------ */
 /*------------------------ PRODUCTS ------------------------ */
@@ -62,24 +62,24 @@ const postCart = (sku_id) => {
 /*------------------------ REVIEWS ------------------------ */
 
 const getReviews = (product_id, page = 1, count = 2, sort = "relevant") => {
-  return axios.get(reviewsHost + `/reviews/?product_id=${product_id}&page=${page}&count=${count}&sort=${sort}`, options)
+  return axios.get(reviewsHost + `/reviews/?product_id=${product_id}&page=${page}&count=${count}&sort=${sort}`)
     .then((res) => res.data.results)
     .catch((err) => console.error(err));
 };
 
 const getReviewMetadata = (product_id) => {
-  return axios.get(reviewsHost + `/reviews/meta/?product_id=${product_id}`, options)
+  return axios.get(reviewsHost + `/reviews/meta/?product_id=${product_id}`)
     .then((res) => res.data)
     .catch((err) => console.error(err));
 };
 
 const postReview = (reviewObject) => {
-  return axios.post(reviewsHost + `/reviews`, reviewObject, options)
+  return axios.post(reviewsHost + `/reviews`, reviewObject)
     .catch((err) => console.error(err));
 };
 
 const putReviewHelpful = (review_id) => {
-  return axios.put(reviewsHost + `/reviews/${review_id}/helpful`, {review_id: review_id}, options)
+  return axios.put(reviewsHost + `/reviews/${review_id}/helpful`, {review_id: review_id})
     .catch((err) => console.error(err));
 };
 

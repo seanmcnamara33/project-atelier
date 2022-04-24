@@ -13,7 +13,9 @@ const ProductCard = React.memo(function ProductCard({product_id, related, setPro
       .then((productData) => getStyles(product_id)
         .then((styleData) => getReviewMetadata(product_id)
           .then((reviewData) => {
-            setCardData({productData, styleData, reviewData: reviewData.ratings});
+            if (reviewData) {
+              setCardData({productData, styleData, reviewData: reviewData.ratings});
+            }
           })))
       .catch((err) => console.error(err));
   }, [product_id]);
